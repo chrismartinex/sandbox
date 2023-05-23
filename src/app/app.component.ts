@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FetchService } from './fetch.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sandbox';
+  data: any;
+
+  constructor(private _apiservice: FetchService){}
+
+  ngOnInit(){
+    this._apiservice.getData().subscribe(res => {
+      this.data = res;
+      console.log(this.data);
+    })
+  }
 }
